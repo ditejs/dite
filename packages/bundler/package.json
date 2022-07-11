@@ -46,7 +46,7 @@
     "cross-spawn": "7.0.3",
     "es-module-lexer": "0.10.5",
     "fast-glob": "3.2.11",
-    "globby": "11.1.0",
+    "globby": "13.1.2",
     "speed-measure-webpack-plugin": "1.5.0",
     "webpack-5-chain": "8.0.1"
   },
