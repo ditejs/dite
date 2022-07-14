@@ -1,8 +1,7 @@
 import { IConfig } from '@dite/core';
 import { lodash, logger } from '@dite/utils';
 import { INestApplication } from '@nestjs/common';
-import { NestExpressApplication } from '@nestjs/platform-express';
-import { ServeStaticOptions } from '@nestjs/platform-express/interfaces/serve-static-options.interface';
+import type { NestExpressApplication } from '@nestjs/platform-express';
 import compression from 'compression';
 import type { Request, Response } from 'express';
 import path from 'path';
@@ -89,7 +88,7 @@ export class DiteApp<T extends INestApplication = INestApplication> {
       const { app } = this;
       if (isExpress(app)) {
         app.use(compression());
-        const staticPath = path.join(process.cwd(), './public');
+        const staticPath = path.join(this.config.cwd, './public');
         app.useStaticAssets(staticPath, { maxAge: 3600 });
         app.set('x-powered-by', false);
         await app.init();
@@ -101,15 +100,6 @@ export class DiteApp<T extends INestApplication = INestApplication> {
       }
       await this.watch();
       this.initialized = true;
-    }
-    return this;
-  }
-
-  useStaticAssets(options: ServeStaticOptions): this;
-  useStaticAssets(path: string, options?: ServeStaticOptions): this;
-  public useStaticAssets(path: any, ...args: any[]): this {
-    if (isExpress(this.app)) {
-      this.app.useStaticAssets(path, ...args);
     }
     return this;
   }

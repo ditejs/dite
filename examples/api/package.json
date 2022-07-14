@@ -10,10 +10,9 @@
     "v2": "dite version2"
   },
   "dependencies": {
-    "@dite/server": "0.0.25",
+    "@dite/nest": "0.0.25",
     "@nestjs/common": "^9.0.3",
     "@nestjs/core": "^9.0.3",
-    "@nestjs/platform-express": "^9.0.3",
     "dite": "0.0.25",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

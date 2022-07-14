@@ -19,14 +19,23 @@
     "email": "lorenx@163.com",
     "url": "https://github.com/loyep"
   },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    },
+    "./compiled/*": "./compiled/*",
+    "./package.json": "./package.json"
+  },
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "types/index.d.ts",
   "files": [
     "dist",
     "compiled"
   ],
   "scripts": {
-    "build": "pnpm tsc",
+    "build": "dite-scripts build",
     "build:deps": "dite-scripts pkgCompile",
     "dev": "pnpm build -- --watch",
     "test": "pnpm test"

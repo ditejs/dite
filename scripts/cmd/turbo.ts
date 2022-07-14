@@ -1,6 +1,6 @@
 import yArgs from '@dite/utils/compiled/yargs-parser';
 import { PATHS } from '../internal/const';
-import { spawnSync } from '../utils';
+import { spawnSync, toArray } from '../utils';
 
 (async () => {
   const args = yArgs(process.argv.slice(2));
@@ -23,14 +23,15 @@ function turbo(opts: {
   cache?: boolean;
   parallel?: boolean;
 }) {
-  const extraCmd = opts.extra ? `-- -- ${opts.extra}` : '';
+  const extraCmd = opts.extra ? `-- ${opts.extra}` : '';
   const cacheCmd = opts.cache === false ? '--no-cache --force' : '';
   const parallelCmd = opts.parallel ? '--parallel' : '';
+  const filters: string[] = toArray(opts.filter);
 
   const options = [
     opts.cmd,
     `--cache-dir=".turbo"`,
-    `--filter="${opts.filter}"`,
+    filters.map((f) => `--filter="${f}"`).join(' '),
     cacheCmd,
     parallelCmd,
     extraCmd,

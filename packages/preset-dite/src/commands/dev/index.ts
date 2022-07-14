@@ -45,6 +45,13 @@ const startServer = (
   };
 };
 
+const templateNames = (pkg: any) => {
+  if (pkg.dependencies['@dite/nest']) {
+    return 'dite.nest.tpl';
+  }
+  return 'dite.server.tpl';
+};
+
 export default (api: IApi) => {
   api.registerCommand({
     name: 'dev',
@@ -57,8 +64,9 @@ PORT=3001 dite dev
 `,
     async fn() {
       const pkgPath = path.join(api.cwd, 'package.json');
+      const pkg = fsExtra.readJSONSync(pkgPath);
       const code = fsExtra.readFileSync(
-        path.join(__dirname, '../../../templates/dite.server.tpl'),
+        path.join(__dirname, `../../../templates/${templateNames(pkg)}`),
         'utf8',
       );
       const res = await esbuild.transform(code, {

@@ -9,10 +9,10 @@ importers:
       '@dite/bundler-webpack': workspace:*
       '@dite/cli': workspace:*
       '@dite/core': workspace:*
+      '@dite/nest': workspace:*
       '@dite/node': workspace:*
       '@dite/preset-dite': workspace:*
       '@dite/react': workspace:*
-      '@dite/server': workspace:*
       '@dite/utils': workspace:*
       '@jest/types': ^28.1.1
       '@pnpm/lockfile-file': ^5.1.4
@@ -58,10 +58,10 @@ importers:
       '@dite/bundler-webpack': link:packages/bundler-webpack
       '@dite/cli': link:packages/cli
       '@dite/core': link:packages/core
+      '@dite/nest': link:packages/nest
       '@dite/node': link:packages/node
       '@dite/preset-dite': link:packages/preset-dite
       '@dite/react': link:packages/react
-      '@dite/server': link:packages/server
       '@dite/utils': link:packages/utils
       '@jest/types': 28.1.3
       '@pnpm/lockfile-file': 5.1.4_@pnpm+logger@4.0.0
@@ -123,10 +123,9 @@ importers:
 
   examples/api:
     specifiers:
-      '@dite/server': 0.0.25
+      '@dite/nest': 0.0.25
       '@nestjs/common': ^9.0.3
       '@nestjs/core': ^9.0.3
-      '@nestjs/platform-express': ^9.0.3
       '@types/express': ^4.17.13
       '@types/node': ^17.0.24
       '@types/react': ^18.0.0
@@ -146,10 +145,9 @@ importers:
       tsconfig-paths: ^4.0.0
       typescript: ^4.7.4
     dependencies:
-      '@dite/server': link:../../packages/server
+      '@dite/nest': link:../../packages/nest
       '@nestjs/common': 9.0.3_j5hagqx4mwzscud4kyjdvubauy
-      '@nestjs/core': 9.0.3_u3zgdsyda4a2nzaf3eh72zektq
-      '@nestjs/platform-express': 9.0.3_2loxls3fbqb44dvsophl4n3naa
+      '@nestjs/core': 9.0.3_juuodvksmdkbuombvw4ic54spm
       dite: link:../../packages/dite
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -172,34 +170,32 @@ importers:
 
   examples/boilerplate:
     specifiers:
-      '@dite/server': 0.0.25
-      '@nestjs/cli': 9.0.0
+      '@dite/nest': 0.0.25
+      '@nestjs/cli': ^9.0.0
       '@nestjs/common': ^9.0.3
       '@nestjs/core': ^9.0.3
-      '@nestjs/platform-express': ^9.0.3
-      '@types/express': 4.17.13
-      '@types/node': 17.0.24
-      '@types/react': 18.0.15
-      '@types/react-dom': 18.0.6
-      '@typescript-eslint/eslint-plugin': 5.30.6
-      '@typescript-eslint/parser': 5.30.6
+      '@types/express': ^4.17.13
+      '@types/node': ^17.0.24
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      '@typescript-eslint/eslint-plugin': ^5.30.5
+      '@typescript-eslint/parser': ^5.30.5
       dite: 0.0.25
-      eslint: 8.19.0
-      eslint-config-prettier: 8.5.0
-      eslint-plugin-prettier: 4.2.1
-      prettier: 2.6.2
+      eslint: ^8.19.0
+      eslint-config-prettier: ^8.5.0
+      eslint-plugin-prettier: ^4.2.1
+      prettier: ^2.6.2
       react: ^18.0.2
       react-dom: ^18.0.2
       reflect-metadata: ^0.1.13
       rxjs: ^7.5.6
       ts-loader: ^9.3.1
-      tsconfig-paths: 4.0.0
-      typescript: 4.7.4
+      tsconfig-paths: ^4.0.0
+      typescript: ^4.7.4
     dependencies:
-      '@dite/server': link:../../packages/server
+      '@dite/nest': link:../../packages/nest
       '@nestjs/common': 9.0.3_j5hagqx4mwzscud4kyjdvubauy
-      '@nestjs/core': 9.0.3_u3zgdsyda4a2nzaf3eh72zektq
-      '@nestjs/platform-express': 9.0.3_2loxls3fbqb44dvsophl4n3naa
+      '@nestjs/core': 9.0.3_juuodvksmdkbuombvw4ic54spm
       dite: link:../../packages/dite
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -209,15 +205,15 @@ importers:
     devDependencies:
       '@nestjs/cli': 9.0.0
       '@types/express': 4.17.13
-      '@types/node': 17.0.24
+      '@types/node': 17.0.45
       '@types/react': 18.0.15
       '@types/react-dom': 18.0.6
       '@typescript-eslint/eslint-plugin': 5.30.6_2vt5mtrqleafs33qg2bhpmbaqm
       '@typescript-eslint/parser': 5.30.6_4x5o4skxv6sl53vpwefgt23khm
       eslint: 8.19.0
       eslint-config-prettier: 8.5.0_eslint@8.19.0
-      eslint-plugin-prettier: 4.2.1_ikfaztf6dt4x6fbtystd5gzdua
-      prettier: 2.6.2
+      eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
+      prettier: 2.7.1
       tsconfig-paths: 4.0.0
       typescript: 4.7.4
 
@@ -441,6 +437,29 @@ importers:
       pirates: 4.0.5
       webpack-5-chain: 8.0.1
 
+  packages/nest:
+    specifiers:
+      '@dite/core': 0.0.25
+      '@nestjs/common': 9.0.1
+      '@nestjs/core': 9.0.1
+      '@nestjs/platform-express': ^9.0.0
+      '@types/compression': ^1.7.2
+      '@types/express': ^4.17.13
+      compression: ^1.7.4
+      reflect-metadata: ^0.1.13
+      rxjs: ^7.5.5
+    dependencies:
+      '@dite/core': link:../core
+      compression: 1.7.4
+    devDependencies:
+      '@nestjs/common': 9.0.1_j5hagqx4mwzscud4kyjdvubauy
+      '@nestjs/core': 9.0.1_z46egnlsjkbneuncfix3wxxgxa
+      '@nestjs/platform-express': 9.0.3_75qmzffkw5ecbb3mxgbk2g6nku
+      '@types/compression': 1.7.2
+      '@types/express': 4.17.13
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.6
+
   packages/node:
     specifiers:
       '@dite/core': 0.0.25
@@ -513,29 +532,6 @@ importers:
       fast-glob: 3.2.11
       speed-measure-webpack-plugin: 1.5.0_webpack@5.73.0
       webpack-5-chain: 8.0.1
-
-  packages/server:
-    specifiers:
-      '@dite/core': 0.0.25
-      '@nestjs/common': 9.0.1
-      '@nestjs/core': 9.0.1
-      '@nestjs/platform-express': ^9.0.0
-      '@types/compression': ^1.7.2
-      '@types/express': ^4.17.13
-      compression: ^1.7.4
-      reflect-metadata: ^0.1.13
-      rxjs: ^7.5.5
-    dependencies:
-      '@dite/core': link:../core
-      '@nestjs/platform-express': 9.0.3_75qmzffkw5ecbb3mxgbk2g6nku
-      compression: 1.7.4
-    devDependencies:
-      '@nestjs/common': 9.0.1_j5hagqx4mwzscud4kyjdvubauy
-      '@nestjs/core': 9.0.1_z46egnlsjkbneuncfix3wxxgxa
-      '@types/compression': 1.7.2
-      '@types/express': 4.17.13
-      reflect-metadata: 0.1.13
-      rxjs: 7.5.6
 
   packages/utils:
     specifiers:
@@ -2181,6 +2177,38 @@ packages:
     transitivePeerDependencies:
       - encoding
 
+  /@nestjs/core/9.0.3_juuodvksmdkbuombvw4ic54spm:
+    resolution: {integrity: sha512-TFXCfcqt1FqN/54hrrfdLZgAroDjqbkJ8mDcFiD4JFuQGIHkgofXXEtjfwPAEfR41RLxB8612Pf0UjI4bag4Vw==}
+    requiresBuild: true
+    peerDependencies:
+      '@nestjs/common': ^9.0.0
+      '@nestjs/microservices': ^9.0.0
+      '@nestjs/platform-express': ^9.0.0
+      '@nestjs/websockets': ^9.0.0
+      reflect-metadata: ^0.1.12
+      rxjs: ^7.1.0
+    peerDependenciesMeta:
+      '@nestjs/microservices':
+        optional: true
+      '@nestjs/platform-express':
+        optional: true
+      '@nestjs/websockets':
+        optional: true
+    dependencies:
+      '@nestjs/common': 9.0.3_j5hagqx4mwzscud4kyjdvubauy
+      '@nuxtjs/opencollective': 0.3.2
+      fast-safe-stringify: 2.1.1
+      iterare: 1.2.1
+      object-hash: 3.0.0
+      path-to-regexp: 3.2.0
+      reflect-metadata: 0.1.13
+      rxjs: 7.5.6
+      tslib: 2.4.0
+      uuid: 8.3.2
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@nestjs/core/9.0.3_u3zgdsyda4a2nzaf3eh72zektq:
     resolution: {integrity: sha512-TFXCfcqt1FqN/54hrrfdLZgAroDjqbkJ8mDcFiD4JFuQGIHkgofXXEtjfwPAEfR41RLxB8612Pf0UjI4bag4Vw==}
     requiresBuild: true
@@ -2921,10 +2949,6 @@ packages:
 
   /@types/node/16.11.43:
     resolution: {integrity: sha512-GqWykok+3uocgfAJM8imbozrqLnPyTrpFlrryURQlw1EesPUCx5XxTiucWDSFF9/NUEXDuD4bnvHm8xfVGWTpQ==}
-    dev: true
-
-  /@types/node/17.0.24:
-    resolution: {integrity: sha512-aveCYRQbgTH9Pssp1voEP7HiuWlD2jW2BO56w+bVrJn04i61yh6mRfoKO6hEYQD9vF+W8Chkwc6j1M36uPkx4g==}
     dev: true
 
   /@types/node/17.0.45:
@@ -5004,25 +5028,6 @@ packages:
       eslint: 8.19.0
       eslint-config-prettier: 8.5.0_eslint@8.19.0
       prettier: 2.7.1
-      prettier-linter-helpers: 1.0.0
-    dev: true
-
-  /eslint-plugin-prettier/4.2.1_ikfaztf6dt4x6fbtystd5gzdua:
-    resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      eslint: '>=7.28.0'
-      eslint-config-prettier: '*'
-      prettier: '>=2.0.0'
-    peerDependenciesMeta:
-      eslint:
-        optional: true
-      eslint-config-prettier:
-        optional: true
-    dependencies:
-      eslint: 8.19.0
-      eslint-config-prettier: 8.5.0_eslint@8.19.0
-      prettier: 2.6.2
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -8230,12 +8235,6 @@ packages:
     dependencies:
       prettier: 2.7.1
       sort-package-json: 1.57.0
-    dev: true
-
-  /prettier/2.6.2:
-    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
     dev: true
 
   /prettier/2.7.1:

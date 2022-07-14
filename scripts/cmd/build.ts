@@ -119,14 +119,14 @@ async function buildTsDecorators(tsconfig: ParsedCommandLine) {
     tsconfig.fileNames,
     {
       ...tsconfig.options,
+      outDir: 'types',
       emitDeclarationOnly: true,
       declaration: true,
+      sourceMap: false,
     },
     host,
   );
   program.emit();
-  // const res = program.emit()
-  // console.log('res', res)
 }
 
 async function buildSourceFiles(esbuildOptions: Partial<BuildOptions>) {
