@@ -119,7 +119,6 @@ async function buildTsDecorators(tsconfig: ParsedCommandLine) {
     tsconfig.fileNames,
     {
       ...tsconfig.options,
-      outDir: 'types',
       emitDeclarationOnly: true,
       declaration: true,
       sourceMap: false,
@@ -148,7 +147,7 @@ function copyNonSourceFiles({ baseDir, outDir, patterns }: AssetsOptions) {
   });
 }
 
-(async () => {
+async function main() {
   const args = yArgs(process.argv.slice(2));
   const clean = args?.clean || false;
   const config = {
@@ -167,4 +166,9 @@ function copyNonSourceFiles({ baseDir, outDir, patterns }: AssetsOptions) {
     buildSourceFiles(esbuildOptions),
     copyNonSourceFiles(assetsOptions),
   ]);
-})();
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

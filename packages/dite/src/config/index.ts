@@ -23,7 +23,7 @@ export function defineConfig(options: Partial<IConfig>): Partial<IConfig> {
 
 function getUserConfig(configFiles: string[]) {
   let config = {};
-  let files: string[] = [];
+  const files: string[] = [];
 
   for (const configFile of configFiles) {
     if (fs.existsSync(configFile)) {

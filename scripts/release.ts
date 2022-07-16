@@ -1,9 +1,9 @@
 import { existsSync } from 'fs';
 import { join } from 'path';
 import 'zx/globals';
-import { examplesDir } from '../internal/const';
-import { getPkgs } from '../utils';
 import { clean } from './clean';
+import { examplesDir } from './internal/const';
+import { getPkgs } from './utils';
 
 function setDepsVersion(opts: {
   deps: string[];
@@ -26,7 +26,7 @@ function setDepsVersion(opts: {
   return pkg;
 }
 
-(async () => {
+async function main() {
   const pkgs = getPkgs();
   $.verbose = false;
   const branch = await $`git rev-parse --abbrev-ref HEAD`;
@@ -41,7 +41,7 @@ function setDepsVersion(opts: {
   // console.log('pnpm build:deps');
   // await $`pnpm build:deps`;
   await $`lerna version --exact --no-commit-hooks --no-git-tag-version --no-push --loglevel error`;
-  const version = require('../../lerna.json').version;
+  const version = require('../lerna.json').version;
 
   console.info(`version: ${version}`);
   let tag = 'latest';
@@ -105,4 +105,9 @@ function setDepsVersion(opts: {
   await Promise.all(
     innerPkgs.map((pkg) => $`cd packages/${pkg} && npm publish --tag ${tag}`),
   );
-})();
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

@@ -8,7 +8,7 @@ const assert = require('assert')
 
 const argv = process.argv.slice(2)
 const name = argv[0]
-const scriptsPath = join(__dirname, `./cmd/${name}.ts`)
+const scriptsPath = join(__dirname, `../${name}.ts`)
 
 assert(
   existsSync(scriptsPath) && !name.startsWith('.'),
@@ -18,7 +18,7 @@ assert(
 console.log(chalk.cyan(`dite-scripts: ${name}\n`))
 
 const spawn = sync(
-  'esno',
+  'tsx',
   [scriptsPath, ...argv.slice(1)],
   {
     env: process.env,

@@ -6,6 +6,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "build:client": {
+      "cache": false
+    },
     "test": {
       "outputs": [".jest-cache/**"]
     }

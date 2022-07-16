@@ -1,7 +1,5 @@
-import 'zx/globals';
-
+import fs from '@dite/utils/compiled/fs-extra';
 import { existsSync } from 'fs';
-import fs from 'fs-extra';
 // @ts-ignore
 import ncc from '@vercel/ncc';
 import { Package } from 'dts-packer';
@@ -264,7 +262,7 @@ function isSameVersion(target: string, opts: any) {
   return false;
 }
 
-(async () => {
+async function main() {
   const opts: BuildOption = {};
   const base = process.cwd();
   const pkg = fs.readJSONSync(path.join(base, 'package.json'));
@@ -316,4 +314,9 @@ function isSameVersion(target: string, opts: any) {
       isDependency: dep in pkgDeps,
     });
   }
-})();
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

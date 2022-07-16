@@ -20,7 +20,7 @@ function byLongestFirst(a: string, b: string): number {
 
 export function getRoutes(_config: any): RouteItem[] {
   const pageDir = path.join(getFeDir(), pageDirName);
-  let files = glob
+  const files = glob
     .sync('**/*.{js,jsx,ts,tsx}', { cwd: pageDir })
     .reduce<{ [routeId: string]: string }>(
       (files: Record<string, string>, file: string) => {
@@ -32,19 +32,19 @@ export function getRoutes(_config: any): RouteItem[] {
       {},
     );
 
-  let routeIds = Object.keys(files).sort(byLongestFirst);
-  let uniqueRoutes: Record<string, RouteItem> = Object.create(null);
+  const routeIds = Object.keys(files).sort(byLongestFirst);
+  const uniqueRoutes: Record<string, RouteItem> = Object.create(null);
 
   routeIds.forEach((routeId) => {
     const parentId = '';
-    let routePath: string | undefined = createRoutePath(
+    const routePath: string | undefined = createRoutePath(
       routeId.slice((parentId || 'pages').length + 1),
     );
     // let fullPath = createRoutePath(routeId.slice(pageDirName.length + 1));
-    let isIndexRoute = routeId.endsWith('/index');
+    const isIndexRoute = routeId.endsWith('/index');
     // let uniqueRouteId = (fullPath || '') + (isIndexRoute ? '?index' : '');
     if (isIndexRoute) {
-      let invalidChildRoutes = routeIds.filter(
+      const invalidChildRoutes = routeIds.filter(
         (id) => findParentRouteId(routeIds, id) === routeId,
       );
 
@@ -54,7 +54,7 @@ export function getRoutes(_config: any): RouteItem[] {
         );
       }
 
-      let route: any = {
+      const route: any = {
         path: routePath ? routePath : '',
         index: true,
         id: createRouteId(files[routeId]),
@@ -64,7 +64,7 @@ export function getRoutes(_config: any): RouteItem[] {
 
       uniqueRoutes[route.id] = route;
     } else {
-      let route: any = {
+      const route: any = {
         path: routePath ? routePath : '',
         id: createRouteId(files[routeId]),
         regex: createRouteRegex(routePath || '/'),
@@ -92,12 +92,12 @@ export function formatRoutes(
 export function formatRoutesAsJsx(routes: any) {
   let output = '<Routes>';
 
-  let level = 1;
-  let indent = Array(level * 2)
+  const level = 1;
+  const indent = Array(level * 2)
     .fill(' ')
     .join('');
 
-  for (let route of routes) {
+  for (const route of routes) {
     output += '\n' + indent;
     output += `<Route${
       route.path ? ` path=${JSON.stringify(route.path)}` : ''

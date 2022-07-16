@@ -1,20 +1,6 @@
 import yArgs from '@dite/utils/compiled/yargs-parser';
-import { PATHS } from '../internal/const';
-import { spawnSync, toArray } from '../utils';
-
-(async () => {
-  const args = yArgs(process.argv.slice(2));
-  const filter = args.filter || './packages/*';
-  const extra = (args._ || []).join(' ');
-
-  turbo({
-    cmd: args.cmd,
-    filter,
-    extra,
-    cache: args.cache,
-    parallel: args.parallel,
-  });
-})();
+import { PATHS } from './internal/const';
+import { spawnSync, toArray } from './utils';
 
 function turbo(opts: {
   filter: string;
@@ -44,3 +30,22 @@ function turbo(opts: {
     cwd: PATHS.ROOT,
   });
 }
+
+async function main() {
+  const args = yArgs(process.argv.slice(2));
+  const filter = args.filter || './packages/*';
+  const extra = (args._ || []).join(' ');
+
+  turbo({
+    cmd: args.cmd,
+    filter,
+    extra,
+    cache: args.cache,
+    parallel: args.parallel,
+  });
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
