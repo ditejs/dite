@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "build": "dite build",
-    "dev": "SPEED_MEASURE=JSON dite dev",
+    "dev": "dite dev",
+    "routes": "dite routes",
     "start": "dite start"
   },
   "dependencies": {

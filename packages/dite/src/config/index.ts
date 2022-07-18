@@ -8,7 +8,7 @@ import { getAbsFiles } from './utils';
 export interface IConfig {
   port: number;
   // dir: string
-  // version: string
+  // version: stringl
 }
 
 export function defineConfig(options: Partial<IConfig>): Partial<IConfig> {
@@ -49,7 +49,7 @@ function getUserConfig(configFiles: string[]) {
 }
 
 export function loadConfig(): Promise<IConfig> {
-  const { config, files } = getUserConfig(
+  const { config } = getUserConfig(
     getAbsFiles({
       files: configFiles,
       cwd: process.cwd(),

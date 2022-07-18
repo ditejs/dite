@@ -30,7 +30,7 @@ const startServer = (
     unwatch = runServer();
   }, 150);
   const watcher = watch({
-    path: path.join(opts.cwd, 'api'),
+    path: path.join(opts.cwd, 'server'),
     onChange: async (event: string, path: string) => {
       logger.debug(`[ Dite ] Auto reload. [${event}] ${path}`);
       if (['change'].includes(event)) {
@@ -80,7 +80,8 @@ PORT=3001 dite dev
       );
       let now = Date.now();
       const builder = await buildDir({
-        dir: path.join(api.cwd, 'api'),
+        dir: path.join(api.cwd, 'server'),
+        cwd: api.cwd,
         env: api.env,
       });
       console.log(`[ Dite ] Build time: ${Date.now() - now}ms`);

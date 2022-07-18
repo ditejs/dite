@@ -20,6 +20,5 @@
     "forceConsistentCasingInFileNames": false,
     "jsx": "react",
     "noFallthroughCasesInSwitch": false
-  },
-  "include": ["dite.env.d.ts", "api"]
+  }
 }

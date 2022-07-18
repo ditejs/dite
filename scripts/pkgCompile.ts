@@ -1,5 +1,4 @@
 import fs from '@dite/utils/compiled/fs-extra';
-import { existsSync } from 'fs';
 // @ts-ignore
 import ncc from '@vercel/ncc';
 import { Package } from 'dts-packer';
@@ -66,36 +65,12 @@ Object.keys(exported).forEach(function (key) {
       );
     } else {
       const filesToCopy: string[] = [];
-      if (opts.file === './bundles/webpack/bundle') {
-        delete opts.webpackExternals['webpack'];
-      }
-      const customEmit = (filePath: string, { id }: any) => {
-        if (
-          (opts.file === './bundles/webpack/bundle' &&
-            filePath.endsWith('.runtime.js')) ||
-          (opts.pkgName === 'terser-webpack-plugin' &&
-            filePath.endsWith('./utils') &&
-            id.endsWith('terser-webpack-plugin/dist/index.js')) ||
-          (opts.pkgName === 'css-minimizer-webpack-plugin' &&
-            filePath.endsWith('./utils') &&
-            id.endsWith('css-minimizer-webpack-plugin/dist/index.js'))
-        ) {
-          filesToCopy.push(
-            resolve.sync(filePath, {
-              basedir: path.dirname(id),
-            }),
-          );
-          return `'./${path.basename(filePath)}'`;
-        }
-      };
-
       let { code, assets } = await ncc(entry, {
         externals: opts.webpackExternals,
         minify: !!opts.minify,
         target: 'es5',
         esm: false,
         assetBuilds: false,
-        customEmit,
       });
 
       // assets
@@ -112,14 +87,18 @@ Object.keys(exported).forEach(function (key) {
       for (const fileToCopy of filesToCopy) {
         let content = fs.readFileSync(fileToCopy, 'utf-8');
         for (const key of Object.keys(opts.webpackExternals)) {
-          content = content.replace(
-            new RegExp(`require\\\(['"]${key}['"]\\\)`, 'gm'),
-            `require('${opts.webpackExternals[key]}')`,
-          );
-          content = content.replace(
-            new RegExp(`require\\\(['"]${key}/package(\.json)?['"]\\\)`, 'gm'),
-            `require('${opts.webpackExternals[key]}/package.json')`,
-          );
+          content = content
+            .replace(
+              new RegExp(`require\\\(['"]${key}['"]\\\)`, 'gm'),
+              `require('${opts.webpackExternals[key]}')`,
+            )
+            .replace(
+              new RegExp(
+                `require\\\(['"]${key}/package(\.json)?['"]\\\)`,
+                'gm',
+              ),
+              `require('${opts.webpackExternals[key]}/package.json')`,
+            );
         }
         fs.writeFileSync(
           path.join(target, path.basename(fileToCopy)),
@@ -208,7 +187,9 @@ Object.keys(exported).forEach(function (key) {
             typesRoot: target,
             externals: opts.dtsExternals,
           });
-        } catch (e) {}
+        } catch (e) {
+          //
+        }
 
         if (opts.pkgName === 'lodash') {
           // TODO
@@ -237,7 +218,7 @@ Object.keys(exported).forEach(function (key) {
 }
 
 function isSameVersion(target: string, opts: any) {
-  const pkgInfo = existsSync(`${target}/package.json`)
+  const pkgInfo = fs.existsSync(`${target}/package.json`)
     ? fs.readJSONSync(`${target}/package.json`)
     : null;
 
