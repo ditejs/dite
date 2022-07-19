@@ -13,7 +13,7 @@ const startServer = (
     port: number;
   },
 ) => {
-  const modulePath = path.join(opts.cwd, '.dite/dite.server.js');
+  const modulePath = path.join(opts.cwd, '.dite/server/main.js');
   const command = `node ${modulePath}`;
   const runServer = () => {
     return run(command, {
