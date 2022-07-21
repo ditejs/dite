@@ -19,7 +19,8 @@
     "email": "lorenx@163.com",
     "url": "https://github.com/loyep"
   },
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -28,6 +29,7 @@
   "scripts": {
     "build": "pnpm tsc",
     "build:deps": "dite-scripts pkgCompile",
+    "build:rollup": "pnpm rollup -c && pnpm tsc -b",
     "dev": "pnpm build -- --watch",
     "test": "pnpm test"
   },
