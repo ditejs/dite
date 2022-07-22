@@ -18,6 +18,7 @@
     "**/examples",
     "**/dist",
     "**/fixtures",
+    "**/dist",
     "**/*.test.ts"
   ]
 }

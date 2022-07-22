@@ -27,6 +27,8 @@
   "files": [
     "dist",
     "compiled",
+    "cli.d.ts",
+    "cli.js",
     "config.d.ts",
     "config.js"
   ],

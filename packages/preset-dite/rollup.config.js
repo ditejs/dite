@@ -1,18 +1,12 @@
 import typescript from '@rollup/plugin-typescript';
-import path from 'path';
-import pkg from './package.json';
+import path, {join} from 'path';
+import {fse} from '@dite/utils';
 
-const external = Object.keys(pkg.dependencies).concat(['path', 'fs', 'typescript']);
+const pkg = fse.readJSONSync(join(__dirname, 'package.json'));
+const external = Object.keys(pkg.dependencies).concat(['path', 'fs', 'typescript', 'dite']);
 
-export default {
-  input: 'src/index.ts',
-  plugins: [typescript({
-    sourceMap: false,
-    tsconfig: path.resolve(__dirname, './tsconfig.json')
-  })],
-  external,
-  output: [
-    {format: 'cjs', file: pkg.main, exports: 'auto'},
-    {format: 'esm', file: pkg.module}
-  ]
-};
+module.exports = {
+  input: 'src/index.ts', plugins: [typescript({
+    sourceMap: false, tsconfig: path.resolve(__dirname, './tsconfig.json')
+  })], external, output: [{format: 'cjs', file: pkg.main, exports: 'auto'}, {format: 'esm', file: pkg.module}]
+}
