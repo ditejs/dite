@@ -14,9 +14,10 @@ import {
   NEST_APP_ENTRY_NAME,
 } from './helpers';
 import { getIp, printMemoryUsage } from './utils';
-import expressListRoutes from './utils/route-list';
+import expressListRoutes from './utils/routeList';
 
 function isExpress(val: unknown): val is NestExpressApplication {
+  console.log(val);
   return true;
 }
 
@@ -29,6 +30,7 @@ export class DiteApp<T extends INestApplication = INestApplication> {
   private routes: Record<string, Record<string, boolean>> = {};
 
   protected middleware(req: Request, res: Response, next: FunctionLike): void {
+    console.log(Object.values(this.routes).length, req.url, res.req.url);
     next();
   }
 
@@ -56,7 +58,7 @@ export class DiteApp<T extends INestApplication = INestApplication> {
 
   protected async watch(): Promise<void> {
     process.on('message', (data: any) => {
-      const { type, payload } = data || {};
+      const { type } = data || {};
       if (type === 'RELOAD_FILE') {
         this.restart();
       }

@@ -2,7 +2,7 @@ import typescript from '@rollup/plugin-typescript';
 const path = require('path');
 import { fse } from '@dite/utils';
 
-const pkg = fse.readJSONSync(join(__dirname, 'package.json'));
+const pkg = fse.readJSONSync(path.join(__dirname, 'package.json'));
 const external = Object.keys(pkg.dependencies).concat(['path', 'fs', 'typescript', 'dite']);
 
 module.exports = {

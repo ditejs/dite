@@ -4,7 +4,11 @@ import path, { dirname, join } from 'path';
 import { IApi } from '../../types';
 import { getSchemas as getExtraSchemas } from './schema';
 
-function resolveProjectDep(opts: { pkg: any; cwd: string; dep: string }) {
+export function resolveProjectDep(opts: {
+  pkg: any;
+  cwd: string;
+  dep: string;
+}) {
   if (
     opts.pkg.dependencies?.[opts.dep] ||
     opts.pkg.devDependencies?.[opts.dep]
@@ -78,6 +82,7 @@ export default (api: IApi) => {
     //   '@': args.paths.absSrcPath,
     //   '@@': args.paths.absTmpPath,
     // };
+    console.log(args);
     return memo;
   });
 };

@@ -4,4 +4,6 @@ type IOpts = {
   cwd: string;
 };
 
-export async function dev(opts: IOpts) {}
+export async function dev(opts: IOpts) {
+  console.log(opts);
+}

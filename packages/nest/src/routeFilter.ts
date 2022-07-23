@@ -10,10 +10,10 @@ export class RouteFilter implements ExceptionFilter {
   /**
    * Nest isn't aware of how next handles routing for the build assets, let next
    * handle routing for any request that isn't handled by a controller
-   * @param err
+   * @param _err
    * @param host
    */
-  public async catch(err: any, host: ArgumentsHost) {
+  public async catch(_err: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const request = ctx.getRequest();
     const response = ctx.getResponse();

@@ -46,7 +46,7 @@ export async function build(opts: IOpts) {
     const now = Date.now();
 
     compiler.hooks.done.tap(PLUGIN_NAME, (stats: webpack.Stats) => {
-      const { errors, warnings } = stats.toJson({
+      const { errors } = stats.toJson({
         all: false,
         warnings: true,
         errors: true,

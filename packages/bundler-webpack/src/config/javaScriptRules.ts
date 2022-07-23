@@ -17,9 +17,7 @@ interface IOpts {
 }
 
 export async function addJavaScriptRules(opts: IOpts) {
-  const { config, userConfig, cwd, name } = opts;
-
-  const depPkgs = {};
+  const { config, userConfig, cwd } = opts;
   const srcRules = [
     config.module
       .rule('src')
@@ -87,6 +85,7 @@ export async function addJavaScriptRules(opts: IOpts) {
       .end()
       .exclude.add((path: string) => {
         try {
+          console.log(path);
           // return isMatch({ path, pkgs: depPkgs });
           return true;
         } catch (e) {

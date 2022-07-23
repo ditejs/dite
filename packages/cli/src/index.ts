@@ -1,5 +1,4 @@
-// @ts-ignore
-import { run } from 'dite/dist/dite';
+import { run } from 'dite/dist/bin/dite';
 
 run().catch((e: any) => {
   console.error(e);

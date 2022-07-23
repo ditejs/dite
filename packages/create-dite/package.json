@@ -31,6 +31,7 @@
   "scripts": {
     "build": "pnpm tsc",
     "build:deps": "dite-scripts pkgCompile",
+    "build:unbuild": "pnpm unbuild",
     "dev": "pnpm build -- --watch"
   },
   "publishConfig": {

@@ -35,6 +35,7 @@
   "scripts": {
     "build": "dite-scripts build",
     "build:deps": "dite-scripts pkgCompile",
+    "build:unbuild": "pnpm unbuild",
     "dev": "pnpm build -- --watch"
   },
   "dependencies": {

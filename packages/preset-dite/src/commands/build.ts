@@ -7,7 +7,7 @@ export default (api: IApi) => {
   api.registerCommand({
     name: 'build',
     description: 'build app for production',
-    fn: async function ({ args }) {
+    fn: async function () {
       await buildDir({
         dir: path.join(api.cwd, 'server'),
         cwd: api.cwd,

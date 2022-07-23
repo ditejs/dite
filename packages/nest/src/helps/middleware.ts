@@ -3,6 +3,7 @@ import type { Request, Response } from 'express';
 export const getMiddleware =
   ({ handler }: any) =>
   async (request: Request, response: Response) => {
+    console.log(request, handler);
     // const input = await getInputFromRequest(request);
     // if (isSchemaHandler(handler)) {
     //   const result = await run({ request: request as any, response }, () =>

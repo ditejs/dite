@@ -58,6 +58,7 @@ export async function getConfig(opts: IOpts) {
     staticPathPrefix:
       opts.staticPathPrefix !== undefined ? opts.staticPathPrefix : 'static/',
   };
+  console.log(applyOpts);
   // mode
   config.mode(opts.env);
   // config.mode('none')
@@ -156,6 +157,7 @@ export async function getConfig(opts: IOpts) {
     opts.cwd,
     userConfig.outputPath || DEFAULT_OUTPUT_PATH,
   );
+  console.log(absOutputPath);
   config.cache(true);
 
   // const disableCompress = process.env.COMPRESS === 'none'
