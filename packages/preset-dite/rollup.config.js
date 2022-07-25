@@ -1,12 +1,43 @@
 import typescript from '@rollup/plugin-typescript';
-import path, {join} from 'path';
-import {fse} from '@dite/utils';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+const pkg = require('./package.json')
 
-const pkg = fse.readJSONSync(join(__dirname, 'package.json'));
-const external = Object.keys(pkg.dependencies).concat(['path', 'fs', 'typescript', 'dite']);
+const external = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.peerDependencies || {}))
 
-module.exports = {
-  input: 'src/index.ts', plugins: [typescript({
-    sourceMap: false, tsconfig: path.resolve(__dirname, './tsconfig.json')
-  })], external, output: [{format: 'cjs', file: pkg.main, exports: 'auto'}, {format: 'esm', file: pkg.module}]
+/** @returns {import("rollup").RollupOptions[]} */
+module.exports = function rollup() {
+  return [
+    {
+      input: 'src/index.ts',
+      external: [
+        ...external,
+        /dite\/dist/,
+        /@dite\/[-\w]+\/compiled/,
+        /node_modules/,
+      ],
+      output: [
+        {
+          format: 'cjs',
+          dir: 'dist',
+          preserveModules: true,
+          entryFileNames: '[name].js',
+          chunkFileNames: '[name].js',
+          exports: 'named'
+        },
+        {
+          format: 'esm',
+          dir: 'dist',
+          preserveModules: true,
+          entryFileNames: '[name].mjs',
+          chunkFileNames: '[name].mjs',
+          exports: 'named'
+        }
+      ],
+      plugins: [
+        typescript({
+          tsconfig: 'tsconfig.json',
+        }),
+        nodeResolve(),
+      ]
+    }]
 }

@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { Configuration } from 'webpack';
 // @ts-ignore
-import SpeedMeasurePlugin from '../../compiled/speed-measure-webpack-plugin';
+import SpeedMeasurePlugin from '@dite/bundler-vite/compiled/speed-measure-webpack-plugin';
 
 interface IOpts {
   webpackConfig: Configuration;

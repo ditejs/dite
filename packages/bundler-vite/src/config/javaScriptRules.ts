@@ -1,6 +1,6 @@
+import Config from '@dite/bundler-vite/compiled/webpack-5-chain';
 import chalk from '@dite/utils/compiled/chalk';
 import { dirname, isAbsolute } from 'path';
-import Config from '../../compiled/webpack-5-chain';
 import { Env, IConfig } from '../types';
 
 interface IOpts {

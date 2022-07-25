@@ -1,10 +1,10 @@
 import getPort from '@dite/core/compiled/get-port';
+import joi from '@dite/core/compiled/joi';
 import { chokidar, fse, lodash, register } from '@dite/utils';
 import { diff } from '@dite/utils/compiled/just-diff';
 import assert from 'assert';
 import esbuild from 'esbuild';
 import path from 'path';
-import joi from '../../compiled/joi';
 import {
   configFiles,
   LOCAL_EXT,

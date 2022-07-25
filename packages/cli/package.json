@@ -20,7 +20,6 @@
     "url": "https://github.com/loyep"
   },
   "main": "dist/index.js",
-  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
     "dite": "dist/index.js"
@@ -32,8 +31,7 @@
   "scripts": {
     "build": "pnpm tsc",
     "build:deps": "dite-scripts pkgCompile",
-    "build:rollup": "pnpm rollup -c && pnpm tsc -b",
-    "build:unbuild": "pnpm unbuild",
+    "build:rollup": "pnpm rollup -c",
     "dev": "pnpm build -- --watch",
     "test": "pnpm test"
   },

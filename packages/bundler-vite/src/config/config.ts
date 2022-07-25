@@ -1,13 +1,13 @@
+import Config from '@dite/bundler-vite/compiled/webpack-5-chain';
 import path from 'path';
 import { TsconfigPathsPlugin } from 'tsconfig-paths-webpack-plugin';
 import webpack from 'webpack';
-import Config from '../../compiled/webpack-5-chain';
+import webpackNodeExternals from 'webpack-node-externals';
 import { DEFAULT_DEVTOOL, DEFAULT_OUTPUT_PATH } from '../constants';
 import { esbuildLoader } from '../loader/esbuild';
 import { Env, IConfig } from '../types';
 import { getBrowsersList } from '../utils/browsersList';
 import { addSpeedMeasureWebpackPlugin } from './speedMeasureWebpackPlugin';
-import webpackNodeExternals = require('webpack-node-externals');
 
 export interface IOpts {
   cwd: string;

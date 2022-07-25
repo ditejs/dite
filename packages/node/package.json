@@ -28,11 +28,12 @@
   "scripts": {
     "build": "pnpm tsc",
     "build:deps": "dite-scripts pkgCompile",
-    "build:unbuild": "pnpm unbuild",
+    "build:rollup": "pnpm rollup -c",
     "dev": "pnpm build -- --watch"
   },
   "dependencies": {
     "@dite/core": "0.0.25",
+    "@dite/utils": "0.0.25",
     "@nestjs/platform-express": "^9.0.0",
     "compression": "^1.7.4"
   },

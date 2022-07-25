@@ -7,12 +7,12 @@ import * as pkgUp from '@dite/utils/compiled/pkg-up';
 import resolve from '@dite/utils/compiled/resolve';
 import yParser from '@dite/utils/compiled/yargs-parser';
 import hbs from 'handlebars';
-import { compatRequire } from './compatRequire';
 import * as logger from './logger';
 import * as register from './register';
 
-export * from './importLazy';
-export * from './winPath';
+export { compatRequire } from './compatRequire';
+export { importLazy } from './importLazy';
+export { winPath } from './winPath';
 export {
   chokidar,
   debug,
@@ -25,5 +25,4 @@ export {
   hbs,
   resolve,
   register,
-  compatRequire,
 };

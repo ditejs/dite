@@ -30,8 +30,7 @@
   "scripts": {
     "build": "pnpm tsc",
     "build:deps": "dite-scripts pkgCompile",
-    "build:rollup": "dite-scripts rollup",
-    "build:unbuild": "pnpm unbuild",
+    "build:rollup": "pnpm rollup -c",
     "dev": "pnpm build -- --watch"
   },
   "dependencies": {

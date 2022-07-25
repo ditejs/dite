@@ -1,6 +1,6 @@
+import Config from '@dite/bundler-vite/compiled/webpack-5-chain';
 import type { CommonOptions as EsbuildConfig } from 'esbuild';
 import { Configuration } from 'webpack';
-import Config from '../compiled/webpack-5-chain';
 
 export enum Env {
   development = 'development',
