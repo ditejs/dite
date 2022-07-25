@@ -28,9 +28,8 @@
     "templates"
   ],
   "scripts": {
-    "build": "pnpm tsc",
+    "build": "pnpm rollup -c",
     "build:deps": "dite-scripts pkgCompile",
-    "build:rollup": "pnpm rollup -c",
     "dev": "pnpm build -- --watch"
   },
   "dependencies": {

@@ -26,9 +26,8 @@
     "compiled"
   ],
   "scripts": {
-    "build": "dite-scripts build",
+    "build": "pnpm rollup -c",
     "build:deps": "dite-scripts pkgCompile",
-    "build:rollup": "pnpm rollup -c",
     "dev": "pnpm build -- --watch",
     "test": "pnpm test"
   },

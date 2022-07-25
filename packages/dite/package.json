@@ -27,15 +27,12 @@
   "files": [
     "dist",
     "compiled",
-    "cli.d.ts",
-    "cli.js",
     "config.d.ts",
     "config.js"
   ],
   "scripts": {
-    "build": "dite-scripts build",
+    "build": "pnpm rollup -c",
     "build:deps": "dite-scripts pkgCompile",
-    "build:rollup": "pnpm rollup -c",
     "dev": "pnpm build -- --watch"
   },
   "dependencies": {

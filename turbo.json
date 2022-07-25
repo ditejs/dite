@@ -9,10 +9,6 @@
     "build:client": {
       "cache": false
     },
-    "build:rollup": {
-      "dependsOn": ["^build:rollup"],
-      "outputs": ["dist/**"]
-    },
     "test": {
       "outputs": [".jest-cache/**"]
     }

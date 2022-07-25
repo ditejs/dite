@@ -12,8 +12,6 @@
     "build:client": "dite-scripts turbo --cmd build:client",
     "build:deps": "pnpm --parallel --filter \"./packages/*\" build:deps",
     "build:force": "dite-scripts turbo --cmd build --no-cache",
-    "build:rollup": "dite-scripts turbo --cmd build:rollup",
-    "build:unbuild": "dite-scripts turbo --cmd build:unbuild",
     "clean": "dite-scripts clean",
     "cov": "jest --coverage",
     "dep:update": "pnpm up --interactive --latest --recursive",

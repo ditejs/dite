@@ -8,7 +8,12 @@ const external = Object.keys(pkg.dependencies || {}).concat(Object.keys(pkg.peer
 module.exports = function rollup() {
   return [
     {
-      input: 'src/index.ts',
+      input: [
+        'src/index.ts',
+        'src/bin/dev.ts',
+        'src/bin/dite.ts',
+        'src/bin/forkedDev.ts',
+      ],
       external: [
         ...external,
         /dite\/dist/,
