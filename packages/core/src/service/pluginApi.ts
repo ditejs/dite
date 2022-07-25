@@ -7,7 +7,13 @@ const resolveConfigModes = ['strict', 'loose'] as const;
 export type ResolveConfigMode = typeof resolveConfigModes[number];
 
 import assert from 'assert';
-import { EnableBy, PluginType, ServiceStage } from '../types';
+import {
+  EnableBy,
+  Env,
+  IPluginConfig,
+  PluginType,
+  ServiceStage,
+} from '../types';
 import { Plugin } from './plugin';
 import { makeArray } from './utils';
 
@@ -18,6 +24,22 @@ export class PluginAPI {
   constructor(opts: { plugin: Plugin; service: Service }) {
     this.plugin = opts.plugin;
     this.service = opts.service;
+  }
+
+  describe(opts: {
+    key?: string;
+    config?: IPluginConfig;
+    enableBy?:
+      | EnableBy
+      | ((enableByOpts: { userConfig: any; env: Env }) => boolean);
+  }) {
+    // default 值 + 配置开启冲突，会导致就算用户没有配 key，插件也会生效
+    if (opts.enableBy === EnableBy.config && opts.config?.default) {
+      throw new Error(
+        `[plugin: ${this.plugin.id}] The config.default is not allowed when enableBy is EnableBy.config.`,
+      );
+    }
+    this.plugin.merge(opts);
   }
 
   register(opts: Omit<IHookOpts, 'plugin'>) {

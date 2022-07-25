@@ -1,4 +1,4 @@
-import { defineConfig } from 'father';
+import { defineConfig } from 'msup';
 
 export default defineConfig({
   extends: '../../.fatherrc.base.ts',

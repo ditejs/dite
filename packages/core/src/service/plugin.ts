@@ -73,6 +73,12 @@ export class Plugin {
     };
   }
 
+  merge(opts: { key?: string; config?: IPluginConfig; enableBy?: any }) {
+    if (opts.key) this.key = opts.key;
+    if (opts.config) this.config = opts.config;
+    if (opts.enableBy) this.enableBy = opts.enableBy;
+  }
+
   private getId(opts: {
     pkg: any;
     isPkgEntry: boolean;

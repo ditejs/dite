@@ -11,5 +11,5 @@ fixtures
 .dite
 lerna.json
 **/__temp__/**
-test/**/out/**
+tests/**/out/**
 pnpm-lock.yaml

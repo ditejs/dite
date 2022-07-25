@@ -6,6 +6,10 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "build:msup": {
+      "dependsOn": ["^build:msup"],
+      "outputs": ["dist/**"]
+    },
     "build:client": {
       "cache": false
     },

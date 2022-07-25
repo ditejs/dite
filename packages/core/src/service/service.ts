@@ -235,7 +235,7 @@ export class Service {
     );
   }
 
-  async run(opts: { name: string; args?: any }) {
+  protected async run(opts: { name: string; args?: any }) {
     const { name, args = {} } = opts;
     args._ = args._ || [];
     // shift the command itself

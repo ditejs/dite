@@ -28,8 +28,9 @@
     "templates"
   ],
   "scripts": {
-    "build": "pnpm father build",
+    "build": "pnpm rollup -c",
     "build:deps": "dite-scripts pkgCompile",
+    "build:msup": "pnpm father build",
     "dev": "pnpm build -- --watch"
   },
   "dependencies": {
