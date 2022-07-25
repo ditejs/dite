@@ -22,14 +22,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "create-dite": "./bin/create-dite.js"
+    "create-dite": "dist/index.js"
   },
   "files": [
     "dist",
     "compiled"
   ],
   "scripts": {
-    "build": "pnpm tsc",
+    "build": "pnpm rollup -c",
     "build:deps": "dite-scripts pkgCompile",
     "dev": "pnpm build -- --watch"
   },

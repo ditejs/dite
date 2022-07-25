@@ -7,6 +7,7 @@ async function main() {
       if (closed) return;
       closed = true;
       // TODO: kill child process
+      console.log(signal);
       process.exit(0);
     };
 

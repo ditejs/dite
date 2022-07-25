@@ -1,4 +1,4 @@
-import fse from '../compiled/fs-extra';
+import fse from '@dite/utils/compiled/fs-extra';
 
 /**
  * Find first already exists file.

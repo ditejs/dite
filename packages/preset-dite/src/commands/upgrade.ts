@@ -4,7 +4,7 @@ export default (api: IApi) => {
   api.registerCommand({
     name: 'upgrade',
     description: 'show dite version',
-    fn({ args }) {
+    fn() {
       console.log('upgrade');
     },
   });

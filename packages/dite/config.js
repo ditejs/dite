@@ -1,1 +1,1 @@
-export * from './dist/config'
+module.exports = require('./dist/config')

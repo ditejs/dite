@@ -1,3 +1,5 @@
+import type { ImportSpecifier } from '@dite/bundler-vite/compiled/es-module-lexer';
+import { init, parse } from '@dite/bundler-vite/compiled/es-module-lexer';
 import type { TransformOptions } from 'esbuild';
 import {
   Loader as EsbuildLoader,
@@ -5,8 +7,6 @@ import {
 } from 'esbuild';
 import { extname } from 'path';
 import type { LoaderContext } from 'webpack';
-import type { ImportSpecifier } from '../../compiled/es-module-lexer';
-import { init, parse } from '../../compiled/es-module-lexer';
 
 export enum Mode {
   development = 'development',

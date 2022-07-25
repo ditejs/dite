@@ -1,6 +1,6 @@
+import Config from '@dite/bundler-vite/compiled/webpack-5-chain';
 import chalk from '@dite/utils/compiled/chalk';
 import { dirname, isAbsolute } from 'path';
-import Config from '../../compiled/webpack-5-chain';
 import { Env, IConfig } from '../types';
 
 interface IOpts {
@@ -17,9 +17,8 @@ interface IOpts {
 }
 
 export async function addJavaScriptRules(opts: IOpts) {
-  const { config, userConfig, cwd, name } = opts;
+  const { config, userConfig, cwd } = opts;
 
-  const depPkgs = {};
   const srcRules = [
     config.module
       .rule('src')
@@ -87,6 +86,7 @@ export async function addJavaScriptRules(opts: IOpts) {
       .end()
       .exclude.add((path: string) => {
         try {
+          console.log(path);
           // return isMatch({ path, pkgs: depPkgs });
           return true;
         } catch (e) {

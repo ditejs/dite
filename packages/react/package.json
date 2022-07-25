@@ -28,7 +28,7 @@
     "plugin.js"
   ],
   "scripts": {
-    "build": "pnpm tsc",
+    "build": "pnpm rollup -c",
     "build:deps": "dite-scripts pkgCompile",
     "dev": "pnpm build -- --watch"
   },

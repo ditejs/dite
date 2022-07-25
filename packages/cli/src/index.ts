@@ -1,5 +1,6 @@
-async function main() {
-  // console.log(1111);
-}
+import { run } from 'dite/dist/bin/dite';
 
-main().then(() => {});
+run().catch((e: any) => {
+  console.error(e);
+  process.exit(1);
+});

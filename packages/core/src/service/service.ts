@@ -1,10 +1,10 @@
-import { fse, lodash, yParser } from '@dite/utils';
-import assert from 'assert';
-import { isAbsolute, join } from 'path';
 import {
   AsyncSeriesWaterfallHook,
   SyncWaterfallHook,
-} from '../../compiled/tapable';
+} from '@dite/core/compiled/tapable';
+import { fse, lodash, yParser } from '@dite/utils';
+import assert from 'assert';
+import { isAbsolute, join } from 'path';
 import { Config } from '../config/config';
 import {
   ApplyPluginsType,
